@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<title>Movies Actors Roles</title>
+<link rel="stylesheet" type="text/css" href="NewFile.css" />
+
+<style> 
+table {
+  border-collapse: collapse;
+}
+td, th {
+  	border: 1px solid;
+  	text-align: left;
+  	padding: 8px;
+}
+tr:nth-child(odd) {
+	background-color: lightgray;
+}
+</style>
+
+</head>
+
+<body>
+	
+	<!-- Jiazheng Huang -->
+	<h4>Search for actors, roles, movies in the database imdb_small</h4><br>
+	
+	Search string<br>
+	<input  id="substring"><br><br>
+	<button id="Actors" onclick="showAll(this)">Actors</button>
+	<button id="Movies" onclick="showAll(this)">Movies</button>
+	<button id="Roles"  onclick="showAll(this)">Roles</button><br><br>
+	
+	<div id="topBeChange"></div>
+
+	<script>
+		function showAll(element) {
+			var sub = document.getElementById('substring').value;
+			elementValue = element.id;
+			
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET", "controller.php?tableName=" + elementValue + "&substring=" + sub, true);
+			ajax.send();
+			ajax.onreadystatechange = function () {
+				if (ajax.readyState == 4 && ajax.status == 200) {
+					var array = JSON.parse(ajax.responseText);
+					
+					if (array.length == 0){
+						var str = "<p>No matches for '" + sub + "'</p>";
+						document.getElementById('topBeChange').innerHTML = str;
+					} else {
+						var str = '<h3>' + elementValue + '</h3>' + '<table>';
+						if (elementValue == "Movies"){
+							for(var i = 0; i < array.length; i++){
+								str += '<tr><td>' + array[i]['name'] + '</td></tr>';
+							}
+							str += '</table>';
+							document.getElementById('topBeChange').innerHTML = str;
+						} else if (elementValue == "Roles"){
+							for(var i = 0; i < array.length; i++){
+								str += '<tr><td>' + array[i]['role'] + '</td></tr>';
+							}
+							str += '</table>';
+							document.getElementById('topBeChange').innerHTML = str;
+						} else if (elementValue == "Actors"){
+							for(var i = 0; i < array.length; i++){
+								str += '<tr><td>' + array[i]['first_name'] + " " + array[i]['last_name'] + '</td></tr>';
+							}
+							str += '</table>';
+							document.getElementById('topBeChange').innerHTML = str;
+						}
+					}
+				}
+			};
+		}
+	</script>
+</body>
+
+</html>
