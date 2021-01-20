@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/* Jiazheng Huang */
+.contentarea {
+	width: 500px;
+	height: 520px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	border: 2px solid;
+	border-radius: 20px;
+	border-color: gray;
+	background-color: #b5dce5;
+}
+
+.receipt {
+	width: 540px;
+	height: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	padding: 25px 20px 20px 20px;
+	border: 2px solid;
+	border-radius: 20px;
+	border-color: gray;
+	background-color: #f6bbcb;
+	display: none;
+}
+
+#logo {
+	display: block;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.title {
+	text-align: center;
+}
+
+form {
+	width: 80%;
+	margin: 0 110px;
+}
+
+label.contentIn {
+	width: 30%;
+	text-align: right;
+}
+
+label.contentIn, input {
+	display: inline-block;
+}
+
+label.contentIn+input {
+	width: 30%;
+	margin: 0 30% 0 1.5%;
+}
+
+input+input {
+	float: right;
+}
+
+.submit {
+	margin: 50px 25%;
+}
+
+.size {
+	margin: 0 55px;
+}
+
+#toBeChanged {
+	text-align: center;
+}
+
+fieldset {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Supreme</title>
+<link href="index.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<!-- Jiazheng Huang -->
+	<div class="contentarea">
+		<img alt="logo" src="images/logo.png" id="logo">
+		<h3 class="title">Supreme Bogo-T Purchase</h3>
+
+		<form onsubmit="sizeFunction();return false">
+		
+		<label class="contentIn">First Name</label><input id="firstName" pattern="[A-Z a-z]*" required><br>
+		<label class="contentIn">Last Name</label><input id="lastName" pattern="[A-Z a-z]*" required><br>
+		<label class="contentIn">Phone</label><input id="phoneNumber" pattern="^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" required><br>
+		<label class="contentIn">City</label><input id="city" pattern="[A-Z a-z]*" required><br>
+		<label class="contentIn">State</label> 
+		<select id="state">
+			<option selected>-Select-</option>
+			<option>AZ</option>
+			<option>CA</option>
+			<option>WA</option>
+		</select><br>
+		
+		<label class="contentIn">Zip</label><input id="zip" pattern="[0-9]{5}" required><br>
+		<label class="contentIn">Quantity(1-5) </label><input id="quantityNum" type="number" min="1" max="5" required><br><br>
+		
+		<input id="s" type="radio" name="cc" value="45" class="size" required> Small $45<br>
+		<input id="m" type="radio" name="cc" value="46" class="size" required> Medium $46<br>
+		<input id="l" type="radio" name="cc" value="47" class="size" required> Large $47<br>
+		<input type="submit" class="submit">
+		</form>
+		
+		<div id="toBeChanged"></div>
+	</div>
+	
+	<div class="receipt" id="toBeReceipted">
+		<h4>Receipt</h4>
+		<label id="receiptDate"></label><br>
+		<label id="receiptQuantity"></label><br>
+		<label id="receiptCost"></label><br><br>
+		<fieldset id="shipTo"></fieldset>
+	</div>
+	<script>
+	
+		var one = document.getElementById("s");
+		var two = document.getElementById("m");
+		var three = document.getElementById("l");
+		var divChange = document.getElementById("toBeChanged");
+		var shipToBeChange = document.getElementById("shipTo");
+		var toBeReceipted = document.getElementById("toBeReceipted");
+		
+		var receiptDate = document.getElementById("receiptDate");
+		var receiptQuantity = document.getElementById("receiptQuantity");
+		var receiptCost = document.getElementById("receiptCost");
+		
+		var firstName = document.getElementById("firstName");
+		var lastName = document.getElementById("lastName");
+		var phoneNumber = document.getElementById("phoneNumber");
+		var city = document.getElementById("city");
+		var state = document.getElementById("state");
+		var zip = document.getElementById("zip");
+		var quantityNum = document.getElementById("quantityNum");
+		
+		function sizeFunction(){
+			var whichOne = "";
+			var cost = 0;
+			var quantity = quantityNum.value;
+			
+			var d = new Date();
+			var m = new Array(12);
+			  m[0] = "Jan";
+			  m[1] = "Feb";
+			  m[2] = "Mar";
+			  m[3] = "Apr";
+			  m[4] = "May";
+			  m[5] = "Jun";
+			  m[6] = "Jul";
+			  m[7] = "Aug";
+			  m[8] = "Sep";
+			  m[9] = "Oct";
+			  m[10] = "Nov";
+			  m[11] = "Dec";
+			var day = d.getDate();
+			var month = m[d.getMonth()];
+			var year = d.getFullYear();
+			
+			if(one.checked) {whichOne = "small"; cost = 45;}
+			if(two.checked) {whichOne = "medium"; cost = 46;}
+			if(three.checked) {whichOne = "large"; cost = 47;}
+			
+			receiptDate.innerHTML = "Purchase Date: " + day + "-" + month + "-" + year;
+			receiptQuantity.innerHTML = "Purchase " + quantity + " " + whichOne + " item(s)";
+			receiptCost.innerHTML = "Total Cost $" + (quantity*cost).toFixed(2);
+			shipTo.innerHTML = "<legend>Ship to</legend>" + firstName.value + " " + lastName.value + "<br>" + city.value + ", " + state.value + "<br>" + zip.value;
+			toBeReceipted.style.display = "block";
+		}
+	
+	</script>
+
+</body>
+</html>
