@@ -6,7 +6,7 @@
 // a new database named quotes and add the two tables (design done for you).
 // The function startByScratch() is only used for testing code at the bottom.
 // 
-// Authors: Rick Mercer and Jiazheng Huang
+// Authors: Jiazheng Huang
 //
 class DatabaseAdaptor {
   private $DB; // The instance variable used in every method below
@@ -24,7 +24,6 @@ class DatabaseAdaptor {
     }
   }
     
-// This function exists only for testing purposes. Do not call it any other time.
 public function startFromScratch() {
   $stmt = $this->DB->prepare("DROP DATABASE IF EXISTS quotes;");
   $stmt->execute();
